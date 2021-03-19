@@ -1,0 +1,14 @@
+<h1 class='font-weight-bold'>Всі пости !<h1>
+<% @post.each do |post| %>
+  <div class="row mb-2">
+    <div class="col-md">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h2 class="mb-0 font-weight-bold"><%= post.title %></h2>
+          <p class="card-text mb-auto h4"><%= post.body %></p>
+          <%= link_to "Читати дальше", post_path(post), :class => 'btn btn-outline-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

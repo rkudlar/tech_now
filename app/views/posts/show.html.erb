@@ -1,0 +1,39 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<hr>
+<%= link_to "Редагувати", edit_post_path(@post), :class => 'btn
+ btn-warning' %>
+<%= link_to "Видалити пост", post_path(@post), method: :delete, data:
+{confirm: "Хочете видалити пост ?"}, :class => 'btn btn-danger' %>
+<hr>
+
+<h2 class='font-weight-bold'>Всі коментарі<h2>
+<% @post.comments.each do |comment| %>
+  <div class="row mb-2">
+    <div class="col-md">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <p class="h5"><strong class = "h5 font-weight-bold"><%= comment.username %></strong>: <%= comment.body %> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<hr>
+<h2>Добавлення коментарів</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <p>
+    Користувач<br>
+    <%= f.text_field(:username, {:class => 'form-control'}) %>
+  </p>
+
+  <p>
+    Текст коментаря <br>
+    <%= f.text_area(:body, {:class => 'form-control'}) %>
+  </p>
+
+  <p>
+    <%= f.submit("Додати коментарій", {:class => 'btn-warning'}) %>
+  </p>
+<% end %>
